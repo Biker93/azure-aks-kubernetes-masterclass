@@ -122,14 +122,17 @@ kubectl get svc
 
 # Access Webserver App (Running on System Nodepool)
 http://<public-ip-of-webserver-app>/app1/index.html
+http://20.185.72.76/app1/index.html
 
 # Access Java-App (Running on linux101 nodepool)
 http://<public-ip-of-java-app>
 Username: admin101
 Password: password101
+http://52.191.18.74
 
 # Access Windows App (Running on win101 nodepool)
 http://<public-ip-of-windows-app>
+http://52.191.18.184
 ```
 
 ## Step-08: Destroy our Terraform Cluster
