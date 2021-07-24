@@ -222,13 +222,38 @@ Important Note: Please go to these repositories and FORK these repositories and 
 REPO: 01-Create-AKS-Cluster
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 5 create AKS CLuster using portal
+
+need DS2_v2 to get enhanced networking ... and that is required for other components, like MySQL
+
+each node: 2 vCPU 7GB RAM 14GB Storage, $0.146/hr  $3.50/day  $106/mo
+https://azure.microsoft.com/en-us/pricing/calculator/?service=kubernetes-service
+
+## Why Managed Identity when creating Cluster?
+https://docs.microsoft.com/en-us/azure/aks/use-managed-identity
+
+https://bridgecrew.io/thank-you-webinar/?210616&submissionGuid=3ffe6ad1-9de0-476c-827a-daac3d9870f7
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 6 Cloud Shell
+
+this needs a storage account, but it doesn't see my Enterprise subscription, only AIT Hosting and MSDN .... 
+
+problem was the browser was not looged into the MSDN kthomson@air.org / Default Directory account  thru LinkedIn
+
+az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+Merged "aksdemo1" as current context in /home/kip/.kube/config
+kip@Azure:~$
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# Base image rebuild Best Practices
+
+https://docs.microsoft.com/en-us/azure/aks/operator-best-practices-container-image-management#automatically-build-new-images-on-base-image-update
+
+https://docs.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-base-image-update
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 #
