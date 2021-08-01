@@ -1,10 +1,10 @@
 # Use Azure Database for MySQL for AKS Workloads
 
-## Step-01: Introduction
+## Step-01: Introduction  Lesson 52-Step 01
 - What are the problems with MySQL Pod & Azure Disks? 
 - How we are going to solve them using Azure MySQL Database?
 
-## Step-02: Create Azure Database for MySQL servers
+## Step-02: Create Azure Database for MySQL servers Lesson 53-Step 02
 - Go to Service **Azure Database for MySQL servers**
 - Click on **Add**
 - **Basics**
@@ -46,8 +46,10 @@ mysql --host=mydemoserver.mysql.database.azure.com --user=myadmin@mydemoserver -
 # 
 mysql --host=akswebappdb.mysql.database.azure.com --user=dbadmin@akswebappdb -p
 ```
+akswebappdb93
+kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb93.mysql.database.azure.com -u dbadmin@akswebappdb93 -pRedhat1449
 
-## Step-04: Create Kubernetes externalName service Manifest and Deploy
+## Step-04: Create Kubernetes externalName service Manifest and Deploy  Lesson 54-Step 03
 - Create mysql externalName Service
 - **01-MySQL-externalName-Service.yml**
 ```yml
@@ -69,7 +71,7 @@ kubectl apply -f kube-manifests/01-MySQL-externalName-Service.yml
 kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u <USER_NAME> -p<PASSWORD>
 
 # Replace Host Name of Azure MySQL Database and Username and Password
-kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin@akswebappdb -pRedhat1449
+kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb93.mysql.database.azure.com -u dbadmin@akswebappdb93 -pRedhat1449
 
 mysql> show schemas;
 mysql> create database webappdb;
@@ -77,7 +79,7 @@ mysql> show schemas;
 mysql> exit
 ```
 ## Step-05: In User Management WebApp deployment file change username from `root` to `dbadmin@akswebappdb`
-- **02-UserMgmtWebApp-Deployment.yml**
+- **02-UserMgmtWebApp-Deployment.yml**  Lesson 54-Step 03
 ```yml
 # Change From
           - name: DB_USERNAME

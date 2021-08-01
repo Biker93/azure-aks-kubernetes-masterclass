@@ -3,7 +3,7 @@
 ## Step-01: Introduction
 - We are going to use Azure AKS provisioned storage class as part of this section
 
-## Step-02: Use AKS Provisioned Azure Disks
+## Step-02: Use AKS Provisioned Azure Disks  Lesson 49 Step-07
 - Copy all templates from previous section
 - Remove Storage Class Manifest
 - **Question-1:** Why do we need to remove storage class Manifests?

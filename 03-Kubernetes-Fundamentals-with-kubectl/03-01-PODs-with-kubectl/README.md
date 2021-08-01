@@ -78,12 +78,12 @@ kubectl delete pod <Pod-Name>
 kubectl delete pod my-first-pod
 ```
 
-## Step-03: Load Balancer Service Introduction
+## 22-06 Step-03: Load Balancer Service Introduction
 - What are Services in k8s?
 - What is a Load Balancer Service?
 - How it works?
 
-## Step-04: Demo - Expose Pod with a Service
+## 23-07 Step-04: Demo - Expose Pod with a Service
 - Expose pod with a service (Load Balancer Service) to access the application externally (from internet)
 - **Ports**
   - **port:** Port on which node port service listens in Kubernetes cluster internally

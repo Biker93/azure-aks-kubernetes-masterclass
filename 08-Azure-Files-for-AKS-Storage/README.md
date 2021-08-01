@@ -1,6 +1,6 @@
-# Azure Files for AKS Storage
+# Azure Files for AKS Storage  Lesson 57
 
-## Step-01: Introduction
+## Step-01: Introduction  Lesson 57
 - Understand Azure Files
 - We are going to write a Deployment Manifest for NGINX Application which will have its static content served from **Azure File Shares** in **app1** folder
 - We are going to mount the file share to a specific path `mountPath: "/usr/share/nginx/html/app1"` in the Nginx container
@@ -21,7 +21,7 @@
 - **Important Note:** Azure Files support premium storage in AKS clusters that run Kubernetes 1.13 or higher, minimum premium file share is 100GB
 
 
-## Step-02: Create or Review kube-manifests-v1 and Nginx Files
+## Step-02: Create or Review kube-manifests-v1 and Nginx Files  Lesson 58 
 - Kube Manifests
   - 01-Storage-Class.yml
   - 02-Persistent-Volume-Claim.yml
@@ -42,7 +42,7 @@
             claimName: my-azurefile-pvc    
 ```  
 
-## Step-03: Deploy Kube Manifests V1
+## Step-03: Deploy Kube Manifests V1  Lesson 589
 ```
 # Deploy
 kubectl apply -f kube-manifests-v1/

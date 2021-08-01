@@ -1,4 +1,4 @@
-# Kubernetes - Secrets
+# Kubernetes - Secrets  Lesson 56
 
 ## Step-01: Introduction
 - Kubernetes Secrets let you store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys. 
