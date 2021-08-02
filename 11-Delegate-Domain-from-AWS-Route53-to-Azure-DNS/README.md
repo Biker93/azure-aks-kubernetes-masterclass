@@ -1,6 +1,6 @@
-# Delegate Domain to Azure DNS
+# Delegate Domain to Azure DNS 
 
-## Step-01: Introduction
+## Step-01: Introduction  Lesson 69
 - Understand about
   - Domain Registrar
   - DNS Zones
@@ -9,7 +9,7 @@
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-delegate-domain-to-azure-dns.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
 
-## Step-02: DNS Zones - Create DNS Zone
+## Step-02: DNS Zones - Create DNS Zone  Lesson 70
 - Go to Service -> **DNS Zones**
 - **Subscription:** StackSimplify-Paid-Subscription (You need to have a paid subscription for this)
 - **Resource Group:** dns-zones

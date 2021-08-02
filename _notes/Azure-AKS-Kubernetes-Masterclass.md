@@ -6,6 +6,9 @@ https://www.udemy.com/course/azure-kubernetes-service-with-azure-devops-and-terr
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # References during class
 
+https://stacksimplify.com
+https://courses.stacksimplify.com
+
 https://github.com/stacksimplify
 https://hub.docker.com/u/stacksimplify
 https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/
@@ -423,6 +426,17 @@ https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 https://github.com/Azure/application-gateway-kubernetes-ingress
 https://azure.microsoft.com/en-in/pricing/details/application-gateway/
 https://azure.microsoft.com/en-us/pricing/details/application-gateway/
+
+## Ingress Annotation Reference
+- https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
+
+## Other References
+- https://github.com/kubernetes/ingress-nginx
+- https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml
+- https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/cloud/deploy.yaml
+- https://kubernetes.github.io/ingress-nginx/deploy/#azure
+- https://helm.sh/docs/intro/install/
+- https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingress-v1-networking-k8s-io
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -16,24 +16,26 @@
 - Deploy a simple Nginx App1 with Ingress manifest and test it
 - Clean-Up or delete application after testing
 
-## Step-02: Create Static Public IP
+## Step-02: Create Static Public IP  Lesson 62
 ```
 # Get the resource group name of the AKS cluster 
 az aks show --resource-group aks-rg1 --name aksdemo1 --query nodeResourceGroup -o tsv
+MC_aks-rg1_aksdemo1_centralus
 
 # TEMPLATE - Create a public IP address with the static allocation
 az network public-ip create --resource-group <REPLACE-OUTPUT-RG-FROM-PREVIOUS-COMMAND> --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 
 # REPLACE - Create Public IP: Replace Resource Group value
 az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralus --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
+
 ```
 - Make a note of Static IP which we will use in next step when installing Ingress Controller
 ```
 # Make a note of Public IP created for Ingress
-52.154.156.139
+23.100.84.27
 ```
 
-## Step-03: Install Ingress Controller
+## Step-03: Install Ingress Controller  Lesson 63
 ```
 # Install Helm3 (if not installed)
 brew install helm
@@ -43,7 +45,8 @@ kubectl create namespace ingress-basic
 
 # Add the official stable repository
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+# helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add stable https://charts.helm.sh/stable
 helm repo update
 
 #  Customizing the Chart Before Installing. 
@@ -65,7 +68,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local \
-    --set controller.service.loadBalancerIP="52.154.156.139" 
+    --set controller.service.loadBalancerIP="23.100.84.27" 
 
 
 # List Services with labels
@@ -86,12 +89,12 @@ http://<Public-IP-created-for-Ingress>
 Primarily refer Settings -> Frontend IP Configuration
 ```
 
-## Step-04: Review Application k8s manifests
+## Step-04: Review Application k8s manifests  Lesson 64
 - 01-NginxApp1-Deployment.yml
 - 02-NginxApp1-ClusterIP-Service.yml
 - 03-Ingress-Basic.yml
 
-## Step-05: Deploy Application k8s manifests and verify
+## Step-05: Deploy Application k8s manifests and verify Lesson 65
 ```
 # Deploy
 kubectl apply -f kube-manifests/
