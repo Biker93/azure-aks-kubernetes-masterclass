@@ -1,11 +1,11 @@
 # Ingress - SSL
 
-## Step-01: Introduction
+## Step-01: Introduction  Lesson 77
 - Implement SSL using Lets Encrypt
 
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-ssl-letsencrypt.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
-## Step-02: Install Cert Manager
+## Step-02: Install Cert Manager  Lesson 78
 ```
 # Install the CustomResourceDefinition resources separately
 kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml
@@ -57,7 +57,7 @@ kubectl apply -f kube-manifests/01-CertManager-ClusterIssuer/cluster-issuer.yml
 ```
 
 
-## Step-07: Review Application NginxApp1,2 K8S Manifests
+## Step-07: Review Application NginxApp1,2 K8S Manifests  Lesson 79
 - 01-NginxApp1-Deployment.yml
 - 02-NginxApp1-ClusterIP-Service.yml
 - 01-NginxApp2-Deployment.yml
@@ -79,6 +79,7 @@ kubectl get pods
 # Verify Cert Manager Pod Logs
 kubectl get pods -n ingress-basic
 kubectl  logs -f <cert-manager-55d65894c7-sx62f> -n ingress-basic #Replace Pod name
+kubectl  logs -f cert-manager-75bbd4ffdd-sqg7t -n ingress-basic #Replace Pod name
 
 
 # Verify SSL Certificates (It should turn to True)
@@ -101,8 +102,8 @@ I0824 13:09:00.496904       1 controller.go:135] cert-manager/controller/orders 
 
 ## Step-10: Access Application
 ```
-http://sapp1.kubeoncloud.com/app1/index.html
-http://sapp2.kubeoncloud.com/app2/index.html
+http://sapp1.andrewthomson.org/app1/index.html
+http://sapp2.andrewthomson.org/app2/index.html
 ```
 
 ## Step-11: Verify Ingress logs for Client IP

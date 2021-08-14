@@ -440,25 +440,269 @@ https://azure.microsoft.com/en-us/pricing/details/application-gateway/
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 72
+
+https://docs.microsoft.com/en-us/azure/dns/dns-faq
+
+## To get Azure Tenant ID
+az account show --query "tenantId"
+"e53e4689-2ff4-46b3-a6cb-af78a8dfb38a"
+
+## To get Azure Subscription ID
+az account show --query "id"
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 78
+
+https://letsencrypt.org/
+https://letsencrypt.org/how-it-works/
+
+https://cert-manager.io/
+https://cert-manager.io/docs/
+https://github.com/jetstack/cert-manager
+
+https://cert-manager.io/docs/configuration/acme/
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 90 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 91
+
+az provider register --namespace Microsoft.ContainerInstance
+Registering is still on-going. You can monitor using 'az provider show -n Microsoft.ContainerInstance'
+
+az provider show -n Microsoft.ContainerInstance
+
+az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 97
+
+ACR NAMESPACE is like Bitbucker PROJECT ... with REPO as the image name
+docker tag kube-nginx-acr:v1  $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
+
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 98  new cluster
+
+az aks update -n aksdemo2 -g aks-rg2 --attach-acr $ACR_NAME
+
+AAD role propagation done[############################################]  100.0000
+ | Running .. (long time)
+%The resource with name 'amtacr2' and type 'Microsoft.ContainerRegistry/registries' could not be found in subscription 'Visual Studio Professional with MSDN (74ae050c-1dc6-48c9-adcc-801a90602553)'.
+
+repeated THREE TIMES before it worked
+
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 100
+
+export ACR_NAME=amtacr
+export ACR_REGISTRY=$ACR_NAME.azurecr.io
+export ACR_NAMESPACE=app2
+export ACR_IMAGE_NAME=acr-app2
+export ACR_IMAGE_TAG=v1
+
+echo $ACR_REGISTRY, $ACR_NAMESPACE, $ACR_IMAGE_NAME, $ACR_IMAGE_TAG
+echo "Service principal NAME: $SERVICE_PRINCIPAL_NAME"
+echo "ACR Registry ID: $ACR_REGISTRY_ID"
+echo "Service principal ID: $SP_APP_ID"
+echo "Service principal password: $SP_PASSWD"
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# new cluster
+
+
+ ## Step-02: Create a new cluster using Azure Management Console  Lesson 90
+- **Basics**
+  - **Subscription:** VS WITH MSDN
+  - **Resource Group:** Creat New: aks-rg2
+  - **Kubernetes Cluster Name:** aksdemo2
+  - **Region:** (US) Central US
+  - **Kubernetes Version:** Select what ever is latest stable version
+  - **Node Size:** Standard DS2 v2 (Default one)
+  - **Node Count:** 1
+*** have to click to a different field after setting count=1 ***
+- **Node Pools**
+  - **Virtual Nodes:** Enabled
+  - leave to defaults
+- **Authentication**
+  - Authentication method: 	System-assigned managed identity
+  - Rest all leave to defaults
+- **Networking**
+  - **Network Configuration:** Advanced
+  - **Network Policy:** Azure
+  - Rest all leave to defaults
+- **Integrations**
+  - Azure Container Registry: None
+  - leave to defaults
+- **Tags**
+  - leave to defaults
+- **Review + Create**
+  - Click on **Create**
+
+
+
+
+
+8/7/21 returned here and cleaned out EVERYTHING to start over
+use CLI for EVERYTHING
+https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
+
+
+
+## Evnironment Variable - run ALL at start of seesion
+export AKS_WORK="/Users/kthomson/Repos/StackSimplify/Masterclass/azure-aks-kubernetes-masterclass/18-Azure-Container-Registry-ACR/18-02-ACR-not-attached-to-AKS-Schedule-to-NodePools"
+
+export AZ_SUBSCRIPTION="Visual Studio Professional with MSDN"
+export AKS_RG="aks-rg2"
+export AKS_LOCATION="centralus"
+export AKS_CLUSTER="aksdemo2"
+export AKS_NODES=1
+
+export ACR_NAME=amtacr
+export ACR_PROVIDER=azurecr.io
+export ACR_REGISTRY=$ACR_NAME.$ACR_PROVIDER
+export ACR_NAMESPACE=app2
+export ACR_IMAGE_NAME=acr-app2
+export ACR_IMAGE_TAG=v1
+export ACR_PSWD=ATFeU05bfk5pBdqkTfGgF3g6=yQc0m6W
+
+export SERVICE_PRINCIPAL_NAME=amtacr_sp_demo
+
+echo "---"
+echo "AKS_WORK: $AKS_WORK  "
+echo "---"
+echo "AZ_SUBSCRIPTION: $AZ_SUBSCRIPTION  "
+echo "AKS_RG: $AKS_RG  "
+echo "AKS_LOCATION: $AKS_LOCATION  "
+echo "AKS_CLUSTER: $AKS_CLUSTER  "
+echo "AKS_NODES: $AKS_NODES  "
+echo "---"
+echo "ACR_NAME: $ACR_NAME  "
+echo "ACR_REGISTRY: $ACR_REGISTRY  "
+echo "ACR_NAMESPACE: $ACR_NAMESPACE  "
+echo "ACR_IMAGE_NAME: $ACR_IMAGE_NAME  "
+echo "ACR_IMAGE_TAG: $ACR_IMAGE_TAG  "
+echo "---"
+echo "SERVICE_PRINCIPAL_NAME: $SERVICE_PRINCIPAL_NAME  "
+echo "ACR_REGISTRY_ID: $ACR_REGISTRY_ID  "
+echo "SP_APP_ID: $SP_APP_ID  "
+echo "SP_PASSWD: $SP_PASSWD  "
+echo "---"
+echo "---"
+
+echo "---"
+echo ": $  "
+echo ": $  "
+echo ": $  "
+
+
+
+cd $AKS_WORK
+
+## Set default Subscription
+az account set -s $AZ_SUBSCRIPTION
+
+## Create a resource group
+az group create --name $AKS_RG --location $AKS_LOCATION
+
+## Confirm or Add Monitoring
+az provider show -n Microsoft.OperationsManagement -o table
+az provider show -n Microsoft.OperationalInsights -o table
+## ... if none
+az provider register --namespace Microsoft.OperationsManagement
+az provider register --namespace Microsoft.OperationalInsights
+
+## Create AKS cluster
+## https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest#az_aks_create
+## --node-vm-size default value: Standard_DS2_v2
+## az aks create --name $AKS_CLUSTER_NAME --resource-group $AKS_RG --node-count ## $AKS_NODES --enable-addons monitoring --generate-ssh-keys --addons virtual-node
+## az aks enable-addons --addons virtual-node --name $AKS_CLUSTER_NAME --resource-group $AKS_RG
+## also need authentication and Advanced ... a bunch of things!
+## back to the GUI!
+
+## *** result ***
+## created 3 additional RGs
+##   aks-rg2  ... the one specified in the AKS create
+##     aks-rg2-vnet
+##     aksdemo2   kube cluster
+##   DefaultResourceGroup-CUS
+##     ContainerInsights... Solution
+##     DefaultWorkspace-  LogAnalytics
+##   MC_aks-rg2_aksdemo2_centralus
+##     PublicIP
+##     Managed Identity for ACI connector
+##     Managed Identity for nodes
+##     Managed Identity for Azure Policy
+##     Network Security Group agentpool
+##     Managed Identity for OMS Agent
+##     Loadbalancer
+##   NetworkWatcherRG
+##     Network Watcher
+
+
+# Configure Command Line Credentials
+az aks get-credentials --name $AKS_CLUSTER --resource-group $AKS_RG
+
+# Verify Nodes
+kubectl get nodes 
+kubectl get nodes -o wide
+
+# Verify aci-connector-linux
+kubectl get pods -n kube-system
+
+# Verify logs of ACI Connector Linux
+kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+') -n kube-system
+
+## 18-02
+## Step-02: Create Azure Container Registry Lecture 100
+## - Go to Services -> Container Registries
+## - Click on **Add**
+## - Subscription: StackSimplify-Paid-Subsciption
+## - Resource Group: acr-rg2
+## - Registry Name: amtacr  (NAME should be unique across Azure Cloud)
+## - Location: Central US
+## - SKU: Basic  (Pricing Note: $0.167 per day)
+## - Click on **Review + Create**
+## - Click on **Create**
+
+
+# Docker Build
+docker build -t $ACR_IMAGE_NAME:$ACR_IMAGE_TAG docker-manifests/.
+
+
+## Step-04: Enable Docker Login for ACR Repository 
+- Go to Services -> Container Registries -> amtacr
+- Go to **Access Keys**
+- Click on **Enable Admin User**
+
+# Login to ACR
+docker login $ACR_NAME
+## $ACR_PSWD
+## (takes a few min before really available for login)
+
+docker tag $ACR_IMAGE_NAME:$ACR_IMAGE_TAG $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
+docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
+
+ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
+
+SP_PASSWD=$(az ad sp create-for-rbac --name http://$SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role acrpull --query password --output tsv)
+
+SP_APP_ID=$(az ad sp show --id "http://$SERVICE_PRINCIPAL_NAME" --query appId --output tsv)
+
+echo "Service principal ID: $SP_APP_ID"
+echo "Service principal password: $SP_PASSWD"
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 #

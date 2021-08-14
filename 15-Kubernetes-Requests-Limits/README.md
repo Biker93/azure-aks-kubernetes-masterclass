@@ -4,7 +4,7 @@ description: Understand Kubernetes Resources Requests & Limits on Azure Kubernet
 ---
 # Kubernetes - Requests and Limits
 
-## Step-01: Introduction
+## Step-01: Introduction  Lesson 80
 - We can specify how much each container in a pod needs the resources like CPU & Memory. 
 - When we provide this information in our pod, the scheduler uses this information to decide which node to place the Pod on based on availability of k8s worker Node CPU and Memory Resources. 
 - When you specify a resource limit for a Container, the kubelet enforces those `limits` so that the running container is not allowed to use more of that resource than the limit you set. 
@@ -14,7 +14,7 @@ description: Understand Kubernetes Resources Requests & Limits on Azure Kubernet
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-resources-requests-limits-2.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-resources-requests-limits-2.png){:target="_blank"}  
 
-## Pre-requisite Check (Optional)
+## Pre-requisite Check (Optional)   Lesson 81
 - We should already have our AKS Cluster UP and Running. 
 - We should have configured our AKS Cluster credentials in command line to execute `kubectl` commands
 ```
@@ -27,7 +27,7 @@ kubectl get nodes -o wide
 ```
 
 
-## Step-02: Add Requests & Limits & Review k8s Manifests
+## Step-02: Add Requests & Limits & Review k8s Manifests  Lesson 81
 - **Folder:** kube-manifests-v1
 ```yaml
           # Requests & Limits    
@@ -40,7 +40,7 @@ kubectl get nodes -o wide
               memory: "256Mi"                                                         
 ```
 
-## Step-03: Create k8s objects & Test
+## Step-03: Create k8s objects & Test Lesson 81
 ```
 # Create All Objects
 kubectl apply -f kube-manifests-v1/

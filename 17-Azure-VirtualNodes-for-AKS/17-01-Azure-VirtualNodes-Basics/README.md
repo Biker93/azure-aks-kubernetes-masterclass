@@ -13,7 +13,7 @@ description: Create Azure Kubernetes Services (AKS) cluster to use virtual nodes
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes.png)
 
- ## Step-02: Create a new cluster using Azure Management Console
+ ## Step-02: Create a new cluster using Azure Management Console  Lesson 90
 - **Basics**
   - **Subscription:** Free Trial or Pay-as-you-go
   - **Resource Group:** Creat New: aks-rg2
@@ -41,7 +41,7 @@ description: Create Azure Kubernetes Services (AKS) cluster to use virtual nodes
   - Click on **Create**
 
 
-## Step-03: Verify Nodes & ACI
+## Step-03: Verify Nodes & ACI  Lesson 90
 ```
 # Configure Command Line Credentials
 az aks get-credentials --name aksdemo2 --resource-group aks-rg2
@@ -66,7 +66,7 @@ virtual-node-aci-linux              Ready    agent   21m   v1.14.3-vk-azure-aci-
 Kalyans-MacBook-Pro:azure-aks-kubernetes-masterclass kdaida$
 ```
 
-## Step-04: Update Deployment Manifest to Schedule Pod on Virtual Nodes
+## Step-04: Update Deployment Manifest to Schedule Pod on Virtual Nodes Lecture 91
 - The below section should be added in Deployment for Azure AKS to schedule the pod on Azure Virtual Nodes
 - Review the manifests
 ```yaml

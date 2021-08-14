@@ -1,13 +1,13 @@
 # Kubernetes ExternalDNS to create Record Sets in Azure DNS from AKS
 
-## Step-01: Introduction
+## Step-01: Introduction  Lesson 71
 - Create External DNS Manifest
 - Provide Access to DNZ Zones using **Azure Managed Service Identity** for External DNS pod to create **Record Sets** in Azure DNS Zones
 - Review Application & Ingress Manifests
 - Deploy and Test
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-external-dns.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
-## Step-02: Create External DNS Manifests
+## Step-02: Create External DNS Manifests Lesson 72
 - External-DNS needs permissions to Azure DNS to modify (Add, Update, Delete DNS Record Sets)
 - We can provide permissions to External-DNS pod in two ways in Azure 
   - Using Azure Service Principal
@@ -107,7 +107,7 @@ spec:
 
 ## Step-03: Create MSI - Managed Service Identity for External DNS to access Azure DNS Zones
 
-### Create Manged Service Identity (MSI)
+### Create Manged Service Identity (MSI)  Lesson 73
 - Go to All Services -> Managed Identities -> Add
 - Resource Name: aksdemo1-externaldns-access-to-dnszones
 - Subscription: Pay-as-you-go
@@ -115,7 +115,7 @@ spec:
 - Location: Central US
 - Click on **Create**
 
-### Add Azure Role Assignment in MSI
+### Add Azure Role Assignment in MSI Lesson 73
 - Opem MSI -> aksdemo1-externaldns-access-to-dnszones 
 - Click on **Azure Role Assignments** -> **Add role assignment**
 - Scope: Resource group
@@ -123,20 +123,20 @@ spec:
 - Resource group: dns-zones
 - Role: Contributor
 
-### Make a note of Client Id and update in azure.json
+### Make a note of Client Id and update in azure.json Lesson 73
 - Go to **Overview** -> Make a note of **Client ID"
 - Update in **azure.json** value for **userAssignedIdentityID**
 ```
   "userAssignedIdentityID": "de836e14-b1ba-467b-aec2-93f31c027ab7"
 ```
 
-## Step-04: Associate MSI in AKS Cluster VMSS
+## Step-04: Associate MSI in AKS Cluster VMSS Lesson 73
 - Go to All Services -> Virtual Machine Scale Sets (VMSS) -> Open aksdemo1 related VMSS (aks-agentpool-27193923-vmss)
 - Go to Settings -> Identity -> User assigned -> Add -> aksdemo1-externaldns-access-to-dnszones 
 
 
 
-## Step-05: Create Kubernetes Secret and Deploy ExternalDNS
+## Step-05: Create Kubernetes Secret and Deploy ExternalDNS Lesson 74
 ```
 # Create Secret
 cd kube-manifests/01-ExteranlDNS
@@ -205,7 +205,7 @@ az network dns record-set a list -g dns-zones -z kubeoncloud.com
 - Perform `nslookup` test
 ```
 # nslookup Test
-Kalyans-MacBook-Pro:01-ExternalDNS kdaida$ nslookup eapp1.kubeoncloud.com
+Kalyans-MacBook-Pro:01-ExternalDNS kdaida$ nslookup eapp1.andrewthomson.org
 Server:		192.168.0.1
 Address:	192.168.0.1#53
 

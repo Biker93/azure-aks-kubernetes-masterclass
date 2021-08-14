@@ -3,7 +3,7 @@ title: Azure AKS Kubernetes Namespaces Resource Quota
 description: Understand Kubernetes Namespaces Resource Quota Concept Azure Kubernetes Service 
 ---
 
-# Kubernetes Namespaces - ResourceQuota - Declarative using YAML
+# Kubernetes Namespaces - ResourceQuota - Declarative using YAML Lesson 87
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-resource-quota.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-resource-quota.png){:target="_blank"}  
 
@@ -37,7 +37,7 @@ spec:
 ```
 
 
-## Step-03: Create k8s objects & Test
+## Step-03: Create k8s objects & Test Lesson 87
 ```
 # Create All Objects
 kubectl apply -f kube-manifests/

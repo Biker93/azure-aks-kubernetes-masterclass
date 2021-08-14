@@ -5,7 +5,7 @@ description: Pull Docker Images from Azure Container Registry using Service Prin
 
 # Azure AKS Pull Docker Images from ACR using Service Principal
 
-## Step-00: Pre-requisites
+## Step-00: Pre-requisites Lecture 99
 - We should have Azure AKS Cluster Up and Running.
 - We have created a new aksdemo2 cluster as part of Azure Virtual Nodes demo in previous section.
 - We are going to leverage the same cluster for all 3 demos planned for Azure Container Registry and AKS.
@@ -24,7 +24,7 @@ kubectl get pods -n kube-system
 kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+') -n kube-system
 ```
 
-## Step-01: Introduction
+## Step-01: Introduction Lecture 99
 - We are going to pull Images from Azure Container Registry which is not attached to AKS Cluster. 
 - We are going to do that using Azure Service Principals.
 - Build a Docker Image from our Local Docker on our Desktop
@@ -36,7 +36,7 @@ kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-nodepools.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-nodepools.png)
 
 
-## Step-02: Create Azure Container Registry
+## Step-02: Create Azure Container Registry Lecture 100
 - Go to Services -> Container Registries
 - Click on **Add**
 - Subscription: StackSimplify-Paid-Subsciption
@@ -73,17 +73,19 @@ docker stop acr-app2
 ```
 
 ## Step-04: Enable Docker Login for ACR Repository 
-- Go to Services -> Container Registries -> acrdemo2ss
+- Go to Services -> Container Registries -> amtacr
 - Go to **Access Keys**
 - Click on **Enable Admin User**
 - Make a note of Username and password
+
 
 ## Step-05: Push Docker Image to Azure Container Registry
 
 ### Build, Test Locally, Tag and Push to ACR
 ```
 # Export Command
-export ACR_REGISTRY=acrdemo2ss.azurecr.io
+export ACR_NAME=amtacr
+export ACR_REGISTRY=$ACR_NAME.azurecr.io
 export ACR_NAMESPACE=app2
 export ACR_IMAGE_NAME=acr-app2
 export ACR_IMAGE_TAG=v1
@@ -121,7 +123,7 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 #ACR_NAME=<container-registry-name>
 ACR_NAME=acrdemo2ss
 SERVICE_PRINCIPAL_NAME=acr-sp-demo
-
+http://acr-sp-demo
 # Obtain the full registry ID for subsequent command args
 ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
 

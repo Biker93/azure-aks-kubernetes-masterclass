@@ -1,5 +1,5 @@
 ---
-title: Azure AKS Kubernetes Namespaces Limit Range
+title: Azure AKS Kubernetes Namespaces Limit Range  Lesson 84
 description: Understand Kubernetes Namespaces Limit Range Concept Azure Kubernetes Service 
 ---
 # Kubernetes Namespaces - LimitRange - Declarative using YAML
@@ -20,7 +20,7 @@ kubectl get nodes -o wide
 ```
 
 
-## Step-01: Create Namespace manifest
+## Step-01: Create Namespace manifest Lesson 84
 - **Important Note:** File name starts with `00-`  so that when creating k8s objects namespace will get created first so it don't throw an error.
 ```yaml
 apiVersion: v1
@@ -29,7 +29,7 @@ metadata:
   name: dev3
 ```
 
-## Step-02: Create LimitRange manifest
+## Step-02: Create LimitRange manifest Lesson 85
 - Instead of specifying `resources like cpu and memory` in every container spec of a pod defintion, we can provide the default CPU & Memory for all containers in a namespace using `LimitRange`
 ```yaml
 apiVersion: v1
@@ -48,7 +48,7 @@ spec:
       type: Container                        
 ```
 
-## Step-03: Update all k8s manifest with namespace
+## Step-03: Update all k8s manifest with namespace  Lesson 85
 - Update all files from with `namespace: dev3` in top metadata section in folder `kube-manifests/` 
 - **Example**
 ```yaml
@@ -73,7 +73,7 @@ metadata:
 spec: 
 ```
 
-## Step-04: Create k8s objects & Test
+## Step-04: Create k8s objects & Test  Lesson 85
 ```
 # Create All Objects
 kubectl apply -f kube-manifests/

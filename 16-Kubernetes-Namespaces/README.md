@@ -1,4 +1,4 @@
-# Namespaces
+# Namespaces  Lesson 82
 
 1. Namespaces - Imperative using kubectl
 2. Namespaces -  Declarative using YAML & LimitRange

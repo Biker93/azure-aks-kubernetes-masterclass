@@ -3,16 +3,16 @@ title: Azure AKS Virtual Nodes Mixed Mode Deployments
 description: Deploy Applications in mixed mode to Virtual Nodes and AKS Nodepools
 ---
 
-# Azure AKS Virtual Nodes Mixed Mode Deployments
+# Azure AKS Virtual Nodes Mixed Mode Deployments Lecture 92
 
-## Step-01: Introduction
+## Step-01: Introduction Lecture 92
 - We are going to deploy MySQL on regular AKS nodepools (default system nodepool)
 - We are going to deploy **User Management Web Application** on Azure Virtual Nodes
 - All this we are going to do using NodeSelectors concept in Kubernetes
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes-mixed-mode-deployments.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes-mixed-mode-deployments.png)
 
-## Step-02: Review Kubernetes Manifests
+## Step-02: Review Kubernetes Manifests  Lecture 93
 ### MySQL Deployment 
 - **File Name:** 04-mysql-deployment.yml
 - No changes in it, MySQL pod will get scheduled on default AKS nodepool

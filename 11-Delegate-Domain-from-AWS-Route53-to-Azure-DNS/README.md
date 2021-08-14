@@ -21,17 +21,17 @@
 - Go to Services -> **DNS Zones** -> **kubeoncloud.com**
 - Make a note of Nameservers
 ```
-ns1-04.azure-dns.com.
-ns2-04.azure-dns.net.
-ns3-04.azure-dns.org.
-ns4-04.azure-dns.info.
+ns1-02.azure-dns.com.
+ns2-02.azure-dns.net.
+ns3-02.azure-dns.org.
+ns4-02.azure-dns.info.
 ```
 
 ## Step-04: Update Nameservers at your Domain provider (Mine is AWS)
 - **Verify before updation**
 ```
-nslookup -type=SOA kubeoncloud.com
-nslookup -type=NS kubeoncloud.com
+nslookup -type=SOA andrewthomson.org
+nslookup -type=NS andrewthomson.org
 ```
 - Go to AWS Route53 (This is my Domain Provider)
 - Go to Services -> Route53 -> Registered Domains -> kubeoncloud.com

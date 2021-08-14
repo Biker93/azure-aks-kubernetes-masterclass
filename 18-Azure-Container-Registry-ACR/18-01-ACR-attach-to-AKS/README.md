@@ -5,7 +5,7 @@ description: Build a Docker Image, Push to Azure Container Registry and  Attach 
 
 # Integrate Azure Container Registry ACR with AKS
 
-## Step-00: Pre-requisites
+## Step-00: Pre-requisites Lesson 95
 - We should have Azure AKS Cluster Up and Running.
 - We have created a new aksdemo2 cluster as part of Azure Virtual Nodes demo in previous section.
 - We are going to leverage the same cluster for all 3 demos planned for Azure Container Registry and AKS.
@@ -24,7 +24,7 @@ kubectl get pods -n kube-system
 kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+') -n kube-system
 ```
 
-## Step-01: Introduction
+## Step-01: Introduction Lesson 95
 - Build a Docker Image from our Local Docker on our Desktop
 - Tag the docker image in the required ACR Format
 - Push to Azure Container Registry
@@ -36,7 +36,7 @@ kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-
 
 [![Image](https://stacksimplify.com/course-images/azure-container-registry-pricing-tiers.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-container-registry-pricing-tiers.png)
 
-## Step-02: Create Azure Container Registry
+## Step-02: Create Azure Container Registry Lesson 97
 - Go to Services -> Container Registries
 - Click on **Add**
 - Subscription: StackSimplify-Paid-Subsciption
@@ -84,7 +84,7 @@ docker stop kube-nginx-acr
 ### Build, Test Locally, Tag and Push to ACR
 ```
 # Export Command
-export ACR_REGISTRY=acrforaksdemo2.azurecr.io
+export ACR_REGISTRY=amtacr2.azurecr.io
 export ACR_NAMESPACE=app1
 export ACR_IMAGE_NAME=kube-nginx-acr
 export ACR_IMAGE_TAG=v1
@@ -96,7 +96,7 @@ docker login $ACR_REGISTRY
 # Tag
 docker tag kube-nginx-acr:v1  $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 It replaces as below
-docker tag kube-nginx-acr:v1 acrforaksdemo2.azurecr.io/app1/kube-nginx-acr:v1
+docker tag kube-nginx-acr:v1 amtacr2.azurecr.io/app1/kube-nginx-acr:v1
 
 # List Docker Images to verify
 docker images kube-nginx-acr:v1
@@ -110,10 +110,11 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 - Go to **Repositories** -> **app1/kube-nginx-acr**
 
 
-## Step-05: Configure ACR integration for existing AKS clusters
+## Step-05: Configure ACR integration for existing AKS clusters  Lecture 98
 ```
 #Set ACR NAME
 export ACR_NAME=acrforaksdemo2
+export ACR_NAME=amtacr2
 echo $ACR_NAME
 
 # Template

@@ -4,8 +4,8 @@
 # ACR_NAME: The name of your Azure Container Registry
 # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
 #ACR_NAME=<container-registry-name>
-ACR_NAME=acrdemo2ss
-SERVICE_PRINCIPAL_NAME=acr-sp-demo
+#ACR_NAME=acrdemo2ss
+SERVICE_PRINCIPAL_NAME=amtacr-sp-demo
 
 # Obtain the full registry ID for subsequent command args
 ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)

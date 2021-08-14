@@ -29,7 +29,7 @@ kubectl get nodes -o wide
 ```
 
 
-## Step-02: Namespaces Generic - Deploy in Dev1 and Dev2
+## Step-02: Namespaces Generic - Deploy in Dev1 and Dev2  Lesson 83
 ### Create Namespace
 ```
 # List Namespaces
