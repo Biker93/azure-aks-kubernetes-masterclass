@@ -70,6 +70,8 @@ echo ${AKS_VNET_SUBNET_DEFAULT_ID}
 ```
 
 
+*** must disconnect from CATO for this to work ***
+
 ## Step-02: Pre-requisite-3: Create Azure AD Group & Admin User
 - Create Azure AD Group: aksadmins
 - Create Azure AD User: aksadmin1 and associate to aksadmins ad group
@@ -78,22 +80,36 @@ echo ${AKS_VNET_SUBNET_DEFAULT_ID}
 AKS_AD_AKSADMIN_GROUP_ID=$(az ad group create --display-name aksadmins --mail-nickname aksadmins --query objectId -o tsv)    
 echo $AKS_AD_AKSADMIN_GROUP_ID
 
+> 30904aca-f896-4ab1-a2c1-bb77cde507d3
+
 # Create Azure AD AKS Admin User 
 # Replace with your AD Domain - aksadmin1@stacksimplifygmail.onmicrosoft.com
 AKS_AD_AKSADMIN1_USER_OBJECT_ID=$(az ad user create \
   --display-name "AKS Admin1" \
-  --user-principal-name aksadmin1@stacksimplifygmail.onmicrosoft.com \
+  --user-principal-name aksadmin1@kthomsonair.onmicrosoft.com \
   --password @AKSDemo123 \
   --query objectId -o tsv)
 echo $AKS_AD_AKSADMIN1_USER_OBJECT_ID
+
+> 5e52e3ca-6369-4084-a3fe-93d2defbcc67 
 
 # Associate aksadmin User to aksadmins Group
 az ad group member add --group aksadmins --member-id $AKS_AD_AKSADMIN1_USER_OBJECT_ID
 
 # Make a note of Username and Password
-Username: aksadmin1@stacksimplifygmail.onmicrosoft.com
+Username: aksadmin1@kthomsonair.onmicrosoft.com
 Password: @AKSDemo123
 ```
+
+
+
+
+
+*** NO CATO ***
+
+
+
+
 
 ## Step-04: Pre-requisite-4: Create SSH Key
 ```

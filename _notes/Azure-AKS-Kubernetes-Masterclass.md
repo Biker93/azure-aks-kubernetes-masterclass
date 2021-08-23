@@ -705,13 +705,92 @@ echo "Service principal password: $SP_PASSWD"
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# AKS Production Grade Cluster
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 159
+
+cd /Users/kthomson/Repos/StackSimplify/Masterclass/azure-aks-kubernetes-masterclass/23-AKS-Production-Grade-Cluster-Design-using-az-aks-cli/23-01-Create-AKSCluster-with-az-aks-cli
+
+# Edit export statements to make any changes required as per your environment
+# Execute below export statements
+AKS_RESOURCE_GROUP=aks-prod
+AKS_REGION=centralus
+echo $AKS_RESOURCE_GROUP, $AKS_REGION
+
+# Create Resource Group
+az group create --location ${AKS_REGION} \
+                --name ${AKS_RESOURCE_GROUP}
+
+# Edit export statements to make any changes required as per your environment
+# Execute below export statements 
+AKS_VNET=aks-vnet
+AKS_VNET_ADDRESS_PREFIX=10.0.0.0/8
+AKS_VNET_SUBNET_DEFAULT=aks-subnet-default
+AKS_VNET_SUBNET_DEFAULT_PREFIX=10.240.0.0/16
+AKS_VNET_SUBNET_VIRTUALNODES=aks-subnet-virtual-nodes
+AKS_VNET_SUBNET_VIRTUALNODES_PREFIX=10.241.0.0/16
+
+# Create Virtual Network & default Subnet
+az network vnet create -g ${AKS_RESOURCE_GROUP} \
+                       -n ${AKS_VNET} \
+                       --address-prefix ${AKS_VNET_ADDRESS_PREFIX} \
+                       --subnet-name ${AKS_VNET_SUBNET_DEFAULT} \
+                       --subnet-prefix ${AKS_VNET_SUBNET_DEFAULT_PREFIX} 
+
+# Create Virtual Nodes Subnet in Virtual Network
+az network vnet subnet create \
+    --resource-group ${AKS_RESOURCE_GROUP} \
+    --vnet-name ${AKS_VNET} \
+    --name ${AKS_VNET_SUBNET_VIRTUALNODES} \
+    --address-prefixes ${AKS_VNET_SUBNET_VIRTUALNODES_PREFIX}
+
+# Get Virtual Network default subnet id
+AKS_VNET_SUBNET_DEFAULT_ID=$(az network vnet subnet show \
+                           --resource-group ${AKS_RESOURCE_GROUP} \
+                           --vnet-name ${AKS_VNET} \
+                           --name ${AKS_VNET_SUBNET_DEFAULT} \
+                           --query id \
+                           -o tsv)
+echo ${AKS_VNET_SUBNET_DEFAULT_ID}
+
+
+
+we now have 2 Resource Groups
+aks-prod
+  "VNet" aks-vnet with 2 subnets
+    aks-subnet-default
+    aks-subnet-virtual-nodes
+NetwrokWatcherRG
+  "Network Watcher" NetworkWatcher_centralus
+
+
+
+# Create Azure AD Group
+AKS_AD_AKSADMIN_GROUP_ID=$(az ad group create --display-name aksadmins --mail-nickname aksadmins --query objectId -o tsv)    
+echo $AKS_AD_AKSADMIN_GROUP_ID
+
+# Create Azure AD AKS Admin User 
+# Replace with your AD Domain - aksadmin1@stacksimplifygmail.onmicrosoft.com
+AKS_AD_AKSADMIN1_USER_OBJECT_ID=$(az ad user create \
+  --display-name "AKS Admin1" \
+  --user-principal-name aksadmin1@stacksimplifygmail.onmicrosoft.com \
+  --password @AKSDemo123 \
+  --query objectId -o tsv)
+echo $AKS_AD_AKSADMIN1_USER_OBJECT_ID
+
+# Associate aksadmin User to aksadmins Group
+az ad group member add --group aksadmins --member-id $AKS_AD_AKSADMIN1_USER_OBJECT_ID
+
+# Make a note of Username and Password
+Username: aksadmin1@stacksimplifygmail.onmicrosoft.com
+Password: @AKSDemo123
+
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
+# 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 #
