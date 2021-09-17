@@ -478,6 +478,50 @@ az provider show -n Microsoft.ContainerInstance
 
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Section 19 ACR
+IMAGE registry
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# 95 ACR Intro
+
+3 tiers
+basic    public  0.167/day $ 5/mo
+standard public  0.667/day $20
+premium  private 1.667/day $50
+
+I have a Docker Hub account ($5/mo) ... with unlimited image storage
+
+
+for CODE
+
+Azure DevOps (basic free with MSDN)
+https://azure.microsoft.com/en-us/services/devops/
+Azure Pipelines: Includes the free offer from INDIVIDUAL SERVICES
+Azure Boards: Work item tracking and Kanban boards
+Azure Repos: Unlimited private Git repos
+Azure Artifacts: 2 GiB free per organization
+
+https://azure.microsoft.com/en-us/pricing/calculator/
+$0
+Include 1 parallel CI/CD job with 1,800 minutes (30 hours) per month
+All organizations include one free Self-Hosted CI/CD parallel job with unlimited minutes. Customers can purchase additional parallel jobs with unlimited minutes.
+2GB Artifacts
+
+Free account: in SAFARI
+https://biker93.visualstudio.com/terraform-azure-aks
+https://account.microsoft.com/?ref=MeControl&refd=biker93.visualstudio.com
+
+w/DevOps the CODE Repo is connected to each Project
+e.g. for Terraform Project, I could have used Repos: (I actually put it in my Github "biker93" account)
+biker93@vs-ssh.visualstudio.com:v3/biker93/terraform-azure-aks/terraform-azure-aks
+
+my "personal" Github account is Biker2020 andrew.m.thomson@gmail.com
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# 97
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # 97
