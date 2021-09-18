@@ -482,16 +482,7 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 # Section 19 ACR
 IMAGE registry
 
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-# 95 ACR Intro
-
-3 tiers
-basic    public  0.167/day $ 5/mo
-standard public  0.667/day $20
-premium  private 1.667/day $50
-
 I have a Docker Hub account ($5/mo) ... with unlimited image storage
-
 
 for CODE
 
@@ -518,9 +509,42 @@ biker93@vs-ssh.visualstudio.com:v3/biker93/terraform-azure-aks/terraform-azure-a
 
 my "personal" Github account is Biker2020 andrew.m.thomson@gmail.com
 
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-# 97
 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# 95 ACR Intro
+
+2 connection methods
+  ACR to AKS Integration (directly attached to cluster)
+  Service Principal using secret for multiple registries
+    node pool or virtual nodes
+
+3 tiers
+basic    public  0.167/day $ 5/mo  10GB
+standard public  0.667/day $20     100GB
+premium  private 1.667/day $50     500GB geo-replicated
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# 97 Create ACR
+
+(had deleted old clusters so have to jump back to 17-01 to re-create aksdemo2
+-or I could use a cluster from the Terraform section) That would only work if "Virtual Nodes" is enabled in TF script. If I us TF, can I adjust the cluster, e.g. toggle Virtual Nodes, or will TF object?
+
+https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster
+A aci_connector_linux block supports the following:
+enabled - (Required) Is the virtual node addon enabled?
+subnet_name - (Optional) The subnet name for the virtual nodes to run. This is required when aci_connector_linux enabled argument is set to true.
+
+A addon_profile block supports the following:
+aci_connector_linux - (Optional) A aci_connector_linux block. For more details, please visit Create and configure an AKS cluster to use virtual nodes.
+https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal
+
+for an example of the add-on block:
+https://github.com/hashicorp/terraform-provider-azurerm/tree/main/examples/kubernetes/aci_connector_linux
+
+and more on ACI
+https://cloud.netapp.com/blog/azure-cvo-blg-azure-container-instance-aci-the-basics-and-a-quick-tutorial
+
+https://cloud.netapp.com/blog/azure-cvo-blg-azure-kubernetes-service-tutorial-integrate-aks-with-aci
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
